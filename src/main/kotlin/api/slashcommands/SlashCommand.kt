@@ -8,6 +8,6 @@ interface SlashCommand {
     val name: String
     val description: String
 
-    suspend fun arguments(builder: ChatInputCreateBuilder) {}
+    suspend fun arguments(builder: ChatInputCreateBuilder): ChatInputCreateBuilder = builder
     suspend fun execute(event: ChatInputCommandInteractionCreateEvent, client: HttpClient)
 }
