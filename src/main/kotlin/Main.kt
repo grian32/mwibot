@@ -52,7 +52,7 @@ suspend fun main() {
         for (i in commands) {
             if (i.name == commandName) {
                 i.execute(this, client)
-                logger.info("Command [${commandName}] ran by user [${interaction.user.username}|${interaction.user.id.value}]]")
+                logger.info("Command [${commandName}] ran by [${interaction.user.username}|${interaction.user.id.value}] with options:[${interaction.command.options}]")
                 return@on
             }
         }
