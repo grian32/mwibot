@@ -4,6 +4,8 @@ import dev.kord.core.Kord
 import dev.kord.core.event.interaction.ChatInputCommandInteractionCreateEvent
 import dev.kord.core.on
 import io.github.classgraph.ClassGraph
+import io.ktor.client.*
+import io.ktor.client.engine.cio.*
 import me.grian.api.slashcommands.SlashCommand
 import org.slf4j.LoggerFactory
 import kotlin.io.path.Path
@@ -14,6 +16,8 @@ suspend fun main() {
     val token = Path(".token").readText()
     val kord = Kord(token)
     val logger = LoggerFactory.getLogger("Main")
+
+    val client = HttpClient(CIO)
 
     val commands: MutableList<SlashCommand> = mutableListOf()
 
@@ -41,7 +45,7 @@ suspend fun main() {
 
         for (i in commands) {
             if (i.name == commandName) {
-                i.execute(this)
+                i.execute(this, client)
                 logger.info("Command [${commandName}] ran by user [${interaction.user.username}|${interaction.user.id.value}]]")
                 return@on
             }
