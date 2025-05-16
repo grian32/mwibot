@@ -6,18 +6,24 @@ import dev.kord.core.on
 import io.github.classgraph.ClassGraph
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
 import me.grian.api.slashcommands.SlashCommand
 import org.slf4j.LoggerFactory
 import kotlin.io.path.Path
 import kotlin.io.path.readText
-import kotlin.math.log
 
 suspend fun main() {
     val token = Path(".token").readText()
     val kord = Kord(token)
     val logger = LoggerFactory.getLogger("Main")
 
-    val client = HttpClient(CIO)
+    val client = HttpClient(CIO) {
+        install(ContentNegotiation) {
+            json(Json)
+        }
+    }
 
     val commands: MutableList<SlashCommand> = mutableListOf()
 
