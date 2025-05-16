@@ -16,36 +16,6 @@ suspend fun main() {
     val logger = LoggerFactory.getLogger("Main")
 
     val commands: MutableList<SlashCommand> = mutableListOf()
-    /**
-     * ClassGraph().enableAllInfo().scan().use { result ->
-     *         val commands = result.getClassesImplementing(ChatCommand::class.java)
-     *
-     *         commands.forEach { command ->
-     *             val commandClass = command.loadClass(ChatCommand::class.java)
-     *             val instance = commandClass.getDeclaredConstructor().newInstance()
-     *
-     *             commandMap["${config.prefix}${instance.name}"] = instance
-     *
-     *             // this dupes the commands but it's probably more efficient for the user.
-     *             instance.aliases.forEach {
-     *                 commandMap["${config.prefix}$it"] = instance
-     *             }
-     *
-     *             println("Command |${instance.name}| has been successfully initialized and loaded.")
-     *         }
-     *
-     *         val behaviourClasses = result.getClassesImplementing(Behaviour::class.java)
-     *
-     *         behaviourClasses.forEach { behaviour ->
-     *             val behaviourClass = behaviour.loadClass(Behaviour::class.java)
-     *             val instance = behaviourClass.getDeclaredConstructor().newInstance()
-     *
-     *             behaviours.add(instance)
-     *
-     *             println("Behaviour |${instance.name}| has been successfully initialized and loaded.")
-     *         }
-     *     }
-     */
 
     ClassGraph().enableAllInfo().scan().use { result ->
         val foundCommands = result.getClassesImplementing(SlashCommand::class.java)
