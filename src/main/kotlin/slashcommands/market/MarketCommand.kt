@@ -16,6 +16,7 @@ import me.grian.Constants
 import me.grian.api.slashcommands.SlashCommand
 import me.grian.capitalizeAllLetters
 import me.grian.slashcommands.market.data.MilkyAPIData
+import java.text.NumberFormat
 
 class MarketCommand : SlashCommand {
     override val name: String
@@ -52,14 +53,16 @@ class MarketCommand : SlashCommand {
             return
         }
 
+
+        val nf = NumberFormat.getInstance()
         interaction.respondEphemeral {
             embed {
                 title = "Market Information for ${item.first.capitalizeAllLetters()}"
 
                 description = """
-                    Ask: ${item.second.ask}
-                    Bid: ${item.second.bid}
-                    Vendor: ${item.second.vendor}
+                    Ask: ${nf.format(item.second.ask)} Coins
+                    Bid: ${nf.format(item.second.ask)} Coins
+                    Vendor: ${nf.format(item.second.ask)} Coins
                 """.trimIndent()
 
                 color = Constants.EMBED_COLOR
