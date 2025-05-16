@@ -19,6 +19,7 @@ dependencies {
     implementation("io.ktor:ktor-client-core:${ktor_version}")
     implementation("io.ktor:ktor-client-cio:${ktor_version}")
     implementation("org.slf4j:slf4j-simple:2.0.17")
+    implementation("io.github.classgraph:classgraph:4.8.179")
 }
 
 tasks.test {
