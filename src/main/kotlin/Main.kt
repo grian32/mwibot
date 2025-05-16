@@ -15,7 +15,7 @@ import kotlin.io.path.Path
 import kotlin.io.path.readText
 
 suspend fun main() {
-    val token = Path(".token").readText()
+    val token = Path(".token").readText().trim()
     val kord = Kord(token)
     val logger = LoggerFactory.getLogger("Main")
 
