@@ -18,6 +18,7 @@ dependencies {
     implementation("dev.kord:kord-core:${kord_version}")
     implementation("io.ktor:ktor-client-core:${ktor_version}")
     implementation("io.ktor:ktor-client-cio:${ktor_version}")
+    implementation("org.slf4j:slf4j-simple:2.0.17")
 }
 
 tasks.test {
