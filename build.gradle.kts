@@ -5,12 +5,19 @@ plugins {
 group = "me.grian"
 version = "1.0-SNAPSHOT"
 
+val ktor_version: String by project
+val kord_version: String by project
+
 repositories {
     mavenCentral()
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("dev.kord:kord-core:${kord_version}")
+    implementation("io.ktor:ktor-client-core:${ktor_version}")
+    implementation("io.ktor:ktor-client-cio:${ktor_version}")
 }
 
 tasks.test {
